@@ -31,8 +31,8 @@ class SerializationInterface(metaclass=Meta):
 def main():
     print("Hello, user!")
     while True:
-        my_format = input(
-            "I need to save new data in format (json, bin, csv): ")
+        print("number created class", " - ", Meta.number_created_class)
+        my_format = input("I need to save new data in format: ")
         if my_format == "json":
             class SerializationJSON(SerializationInterface):
                 data = ""
@@ -89,6 +89,7 @@ def main():
             print(MyCSV.load())
         else:
             break
+        print("number created class", " - ", Meta.number_created_class)
 
 
 if __name__ == "__main__":
