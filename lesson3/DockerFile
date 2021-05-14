@@ -1,0 +1,5 @@
+FROM amd64/python
+
+FROM REQUIREMENTS requirements.txt
+
+RUN new_project.py
