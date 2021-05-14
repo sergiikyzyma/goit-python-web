@@ -1,5 +1,11 @@
 FROM amd64/python
 
-FROM REQUIREMENTS requirements.txt
+ADD addressbook.py /
+ADD clean.py /
+ADD helpers.py /
+ADD new_project.py /
+ADD requirements.txt /
 
-RUN new_project.py
+RUN REQUIREMENTS
+
+CMD ["python3", "./new_project.py"]
