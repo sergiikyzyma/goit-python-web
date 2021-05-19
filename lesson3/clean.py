@@ -23,7 +23,7 @@ def inputing(path):
     return listContain, oldpath
 
 def outputing(dictFiles):
-    os.system("cls")
+    os.system("clear")
     find = input("Enter that you wanna find (folder, image, video, text, musics, archive, various or all) or exit\t")
     key = list(dictFiles.keys())
     if find == "folder":

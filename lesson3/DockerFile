@@ -5,8 +5,7 @@ ADD clean.py /
 ADD helpers.py /
 ADD new_project.py /
 ADD requirements.txt /
-ADD test.py /
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python3", "./test.py"]
+CMD ["python3", "./new_project.py"]
