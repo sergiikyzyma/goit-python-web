@@ -1,6 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
-from threading import Thread, Condition, Event, Lock
-from time import sleep
+from threading import Thread, Lock
 import os
 import pathlib
 import shutil
