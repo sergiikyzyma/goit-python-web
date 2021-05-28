@@ -6,7 +6,7 @@ def func(name):
     print(f"start {name}")
     sleep(3)
     print(f"finish {name}")
-    sys.exit(0)
+    #sys.exit(0)
 
 proc1 = Process(target=func, args=(1,))
 proc2 = Process(target=func, args=(2,))
