@@ -1,5 +1,5 @@
 def query_find_all():
-    return """SELECT name_group,
+    return """SELECT id_group, name_group,
                     student.fist_name,student.second_name,student.last_name,
                     subject.name_subject,
                     teacher.fist_name,teacher.second_name,teacher.last_name,

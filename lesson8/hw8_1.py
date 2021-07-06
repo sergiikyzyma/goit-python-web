@@ -45,14 +45,13 @@ def main():
                     sqlquery(my_connection, fill_table_teacher())
                     sqlquery(my_connection, fill_table_groups())
                 elif answer == "find all":
-                    #sqlquery(my_connection, query_find_all())
-                    sqlquery(my_connection, query_find_1())
-                    sqlquery(my_connection, query_find_2())
-                    sqlquery(my_connection, query_find_3())
+                    sqlquery(my_connection, query_find_all())
                 elif answer == "find 1":
-                    sqlquery(my_connection, query_find_all())
+                    sqlquery(my_connection, query_find_1())
                 elif answer == "find 2":
-                    sqlquery(my_connection, query_find_all())
+                    sqlquery(my_connection, query_find_2())
+                elif answer == "find 3":
+                    sqlquery(my_connection, query_find_3())
                 elif answer == "exit":
                     break
                 else:

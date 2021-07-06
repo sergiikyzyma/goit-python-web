@@ -1,0 +1,8 @@
+FROM amd64/python
+
+ADD requirements.txt /
+ADD newtest.py /
+
+RUN  pip install redis
+
+CMD ["python3", "./newtest.py"]
