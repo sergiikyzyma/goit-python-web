@@ -10,13 +10,13 @@ def query_find_all():
             INNER JOIN teacher ON groups.id_teacher==teacher.id_teacher;"""
 
 def query_find_1():
-    return """SELECT id_student,fist_name,second_name,last_name
+    return """SELECT *
             FROM student;"""
 
 def query_find_2():
-    return """SELECT id_teacher,fist_name,second_name,last_name
+    return """SELECT *
             FROM teacher;"""
 
 def query_find_3():
-    return """SELECT id_subject,name_subject
+    return """SELECT *
             FROM subject;"""

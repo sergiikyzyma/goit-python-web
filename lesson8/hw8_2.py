@@ -16,7 +16,8 @@ def create_table_teacher():
         last_name VARCHAR(50) NOT NULL,
         phone VARCHAR(50),
         email VARCHAR(50),
-        address VARCHAR(50));"""
+        address VARCHAR(50)),
+        grade VARCHAR(30);"""
 
 def create_table_subject():
     return """CREATE TABLE IF NOT EXISTS subject(
