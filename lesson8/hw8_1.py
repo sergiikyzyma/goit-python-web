@@ -38,12 +38,12 @@ def main():
                     sqlquery(my_connection, create_table_student())
                     sqlquery(my_connection, create_table_subject())
                     sqlquery(my_connection, create_table_teacher())
-                    sqlquery(my_connection, create_table_groups())
+                    sqlquery(my_connection, create_table_exam())
                 elif answer == "fill db":
                     sqlquery(my_connection, fill_table_student())
                     sqlquery(my_connection, fill_table_subject())
                     sqlquery(my_connection, fill_table_teacher())
-                    sqlquery(my_connection, fill_table_groups())
+                    sqlquery(my_connection, fill_table_exam())
                 elif answer == "find all":
                     sqlquery(my_connection, query_find_all())
                 elif answer == "find 1":

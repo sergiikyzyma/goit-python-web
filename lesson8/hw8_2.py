@@ -16,8 +16,8 @@ def create_table_teacher():
         last_name VARCHAR(50) NOT NULL,
         phone VARCHAR(50),
         email VARCHAR(50),
-        address VARCHAR(50)),
-        grade VARCHAR(30);"""
+        address VARCHAR(50),
+        grade VARCHAR(30));"""
 
 def create_table_subject():
     return """CREATE TABLE IF NOT EXISTS subject(
@@ -25,9 +25,9 @@ def create_table_subject():
         name_subject VARCHAR(50) NOT NULL,
         decription_subject VARCHAR(500));"""
 
-def create_table_groups():
-    return """CREATE TABLE IF NOT EXISTS groups(
-        id_group INTEGER PRIMARY KEY NOT NULL,
+def create_table_exam():
+    return """CREATE TABLE IF NOT EXISTS exam(
+        id_exam INTEGER PRIMARY KEY NOT NULL,
         name_group VARCHAR(10) NOT NULL,
         id_student INTEGER,
         id_teacher INTEGER,

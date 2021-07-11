@@ -1,13 +1,13 @@
 def query_find_all():
-    return """SELECT id_group, name_group,
-                    student.fist_name,student.second_name,student.last_name,
+    return """SELECT id_exam, name_group,
+                    student.last_name,
                     subject.name_subject,
-                    teacher.fist_name,teacher.second_name,teacher.last_name,
+                    teacher.last_name,teacher.grade,
                     punkts_by_subject,timepunkts_by_subject
-            FROM groups
-            INNER JOIN student ON groups.id_student==student.id_student
-            INNER JOIN subject ON groups.id_subject==subject.id_subject
-            INNER JOIN teacher ON groups.id_teacher==teacher.id_teacher;"""
+            FROM exam
+            INNER JOIN student ON exam.id_student==student.id_student
+            INNER JOIN subject ON exam.id_subject==subject.id_subject
+            INNER JOIN teacher ON exam.id_teacher==teacher.id_teacher;"""
 
 def query_find_1():
     return """SELECT *
