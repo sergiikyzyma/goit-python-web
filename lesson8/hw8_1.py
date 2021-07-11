@@ -52,11 +52,13 @@ def main():
                     sqlquery(my_connection, query_list_teachers())
                 elif answer == "list subjects":
                     sqlquery(my_connection, query_list_subjects())
-                elif answer == "list students in group":
-                    answer = input("which is group? ")
-                    sqlquery(my_connection, query_list_students_in_group(answer))
-                elif answer == "find 3":
-                    sqlquery(my_connection, query_list_subjects())
+                elif answer == "query 1":
+                    answer1 = input("which is group? ")
+                    sqlquery(my_connection, query_find_1(answer1))
+                elif answer == "query 2":
+                    answer1 = input("which is group? ")
+                    answer2 = input("which is subject? ")
+                    sqlquery(my_connection, query_find_2(answer1, answer2))
                 elif answer == "find 4":
                     sqlquery(my_connection, query_list_subjects())
                 elif answer == "find 5":
