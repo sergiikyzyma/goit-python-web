@@ -52,21 +52,25 @@ def main():
                     sqlquery(my_connection, query_list_teachers())
                 elif answer == "list subjects":
                     sqlquery(my_connection, query_list_subjects())
-                elif answer == "query 1":
+                elif answer == "query 6":
                     answer1 = input("which is group? ")
-                    sqlquery(my_connection, query_find_1(answer1))
-                elif answer == "query 2":
-                    answer1 = input("which is group? ")
-                    answer2 = input("which is subject? ")
-                    sqlquery(my_connection, query_find_2(answer1, answer2))
-                elif answer == "query 3":
+                    sqlquery(my_connection, query_find_6(answer1))
+                elif answer == "query 7":
                     answer1 = input("which is group? ")
                     answer2 = input("which is subject? ")
-                    sqlquery(my_connection, query_find_3(answer1, answer2))
-                elif answer == "query 4":
-                    sqlquery(my_connection, query_find_4())
-                elif answer == "find 6":
-                    sqlquery(my_connection, query_list_subjects())
+                    sqlquery(my_connection, query_find_7(answer1, answer2))
+                elif answer == "query 8":
+                    answer1 = input("which is group? ")
+                    answer2 = input("which is subject? ")
+                    sqlquery(my_connection, query_find_8(answer1, answer2))
+                elif answer == "query 9":
+                    sqlquery(my_connection, query_find_9())
+                elif answer == "query 10":
+                    sqlquery(my_connection, query_find_10())
+                elif answer == "query 11":
+                    sqlquery(my_connection, query_find_11())
+                elif answer == "query 12":
+                    sqlquery(my_connection, query_find_12())
                 elif answer == "exit":
                     break
                 else:
