@@ -59,8 +59,10 @@ def main():
                     answer1 = input("which is group? ")
                     answer2 = input("which is subject? ")
                     sqlquery(my_connection, query_find_2(answer1, answer2))
-                elif answer == "find 4":
-                    sqlquery(my_connection, query_list_subjects())
+                elif answer == "query 3":
+                    answer1 = input("which is group? ")
+                    answer2 = input("which is subject? ")
+                    sqlquery(my_connection, query_find_3(answer1, answer2))
                 elif answer == "find 5":
                     sqlquery(my_connection, query_list_subjects())
                 elif answer == "find 6":
