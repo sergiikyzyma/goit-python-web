@@ -44,14 +44,25 @@ def main():
                     sqlquery(my_connection, fill_table_subject())
                     sqlquery(my_connection, fill_table_teacher())
                     sqlquery(my_connection, fill_table_exam())
-                elif answer == "find all":
-                    sqlquery(my_connection, query_find_all())
-                elif answer == "find 1":
-                    sqlquery(my_connection, query_find_1())
-                elif answer == "find 2":
-                    sqlquery(my_connection, query_find_2())
+                elif answer == "list marks all":
+                    sqlquery(my_connection, query_list_marks_all())
+                elif answer == "list students":
+                    sqlquery(my_connection, query_list_students())
+                elif answer == "list teachers":
+                    sqlquery(my_connection, query_list_teachers())
+                elif answer == "list subjects":
+                    sqlquery(my_connection, query_list_subjects())
+                elif answer == "list students in group":
+                    answer = input("which is group? ")
+                    sqlquery(my_connection, query_list_students_in_group(answer))
                 elif answer == "find 3":
-                    sqlquery(my_connection, query_find_3())
+                    sqlquery(my_connection, query_list_subjects())
+                elif answer == "find 4":
+                    sqlquery(my_connection, query_list_subjects())
+                elif answer == "find 5":
+                    sqlquery(my_connection, query_list_subjects())
+                elif answer == "find 6":
+                    sqlquery(my_connection, query_list_subjects())
                 elif answer == "exit":
                     break
                 else:

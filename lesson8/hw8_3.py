@@ -20,7 +20,7 @@ def fill_table_student():
         temp_phone_1[j] = random.sample({'053', '063', '073', '050', '067', '068', '095', '096', '097', '098'}, k=1)
         temp_email_3[j] = random.sample({'com', 'org', 'net', 'gov', 'ua', 'ru', 'pl', 'us', 'de'}, k=1)
         temp_address[j] = random.sample({'Kijow', 'Winnica', 'Charkow', 'Odessa', 'Lwow', 'Poltava', 'Dniepr', 'Stanislawow', 'Zytomierz'}, k=1)
-    result = jinja2.Template("""INSERT INTO student(id_student, fist_name,second_name,last_name,phone,email,address) VALUES
+    result = jinja2.Template("""INSERT INTO student(id_student, first_name,second_name,last_name,phone,email,address) VALUES
             (1, 'Roman', 'Oleksandrovich', 'Astafjev', '({{temp_phone_1[0][0]}})-{{temp_phone_2}}', '{{temp_email_1}}@{{temp_email_2}}.{{temp_email_3[0][0]}}', '{{temp_address[0][0]}}'),
             (2, 'Alina', 'Evgeniivna', 'Bezzub', '{{temp_phone_1[1][0]}}-{{temp_phone_2}}', '{{temp_email_1}}@{{temp_email_2}}.{{temp_email_3[1][0]}}', '{{temp_address[1][0]}}'),
             (3, 'Maria', 'Mykolaiivna', 'Bilajeva', '({{temp_phone_1[2][0]}})-{{temp_phone_2}}', '{{temp_email_1}}@{{temp_email_2}}.{{temp_email_3[2][0]}}', '{{temp_address[2][0]}}'),
@@ -54,7 +54,7 @@ def fill_table_student():
     return result.render(temp_phone_1=temp_phone_1,temp_phone_2=temp_phone_2,temp_email_1=temp_email_1,temp_email_2=temp_email_2,temp_email_3=temp_email_3, temp_address=temp_address)
 
 def fill_table_teacher():
-    result = jinja2.Template("""INSERT INTO teacher(id_teacher, fist_name,second_name,last_name,phone,email,address,grade) VALUES
+    result = jinja2.Template("""INSERT INTO teacher(id_teacher, first_name,second_name,last_name,phone,email,address,grade) VALUES
             (1, 'Ivan', 'Ivanovich', 'Ivanenko', '(096)-2179990', 'Ivanenko@yahoo.com', 'Kijow, ul. Chreszczatik, 7', 'Assistent'),
             (2, 'Petro', 'Petrovich', 'Petrenko', '(073)-5160913', 'Petrenko@yahoo.com', 'Kijow, ul. Wolodymyrska, 13', 'Doctor of philosophy'),
             (3, 'Sydor', 'Sydorovich', 'Sydorenko', '(050)-2203484', 'Sydorenko@yahoo.com', 'Kijow, ul.Industrialna, 23', 'Doctor of sciences'); """)

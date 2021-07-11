@@ -1,7 +1,7 @@
 def create_table_student():
     return """CREATE TABLE IF NOT EXISTS student(
         id_student INTEGER PRIMARY KEY NOT NULL,
-        fist_name VARCHAR(50) NOT NULL,
+        first_name VARCHAR(50) NOT NULL,
         second_name VARCHAR(50) NOT NULL,
         last_name VARCHAR(50) NOT NULL,
         phone VARCHAR(50),
@@ -11,7 +11,7 @@ def create_table_student():
 def create_table_teacher():
     return """CREATE TABLE IF NOT EXISTS teacher(
         id_teacher INTEGER PRIMARY KEY NOT NULL,
-        fist_name VARCHAR(50) NOT NULL,
+        first_name VARCHAR(50) NOT NULL,
         second_name VARCHAR(50) NOT NULL,
         last_name VARCHAR(50) NOT NULL,
         phone VARCHAR(50),
