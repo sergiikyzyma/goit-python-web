@@ -33,7 +33,7 @@ def create_table_exam():
         id_teacher INTEGER,
         id_subject INTEGER,
         punkts_by_subject INTEGER,
-        timepunkts_by_subject INTEGER,
+        timepunkts_by_subject DATE,
         FOREIGN KEY (id_student) REFERENCES student (id_student) ON DELETE SET NULL ON UPDATE CASCADE,
         FOREIGN KEY (id_teacher) REFERENCES teacher (id_teacher) ON DELETE SET NULL ON UPDATE CASCADE,
         FOREIGN KEY (id_subject) REFERENCES subject (id_subject) ON DELETE SET NULL ON UPDATE CASCADE);"""

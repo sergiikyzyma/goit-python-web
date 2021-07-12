@@ -85,7 +85,7 @@ def fill_table_exam():
                 temp_data_day = random.randint(1,30)
                 temp_data_month = random.randint(1,12)
                 temp_data_year = random.randint(2020, 2021)
-                current = jinja2.Template("('{{temp_name}}', {{k}}, {{j}}, {{i}}, {{temp_punkt}}, '{{temp_data_day}}.{{temp_data_month}}.{{temp_data_year}}')")
+                current = jinja2.Template("('{{temp_name}}', {{k}}, {{j}}, {{i}}, {{temp_punkt}}, '{{temp_data_year}}.{{temp_data_month}}.{{temp_data_day}}')")
                 result += current.render(temp_name=temp_name, temp_punkt=temp_punkt, temp_data_day=temp_data_day, temp_data_month=temp_data_month, temp_data_year=temp_data_year, i=i, j=j, k=k)
                 result += ","
     result = result[:-1] + ";"
