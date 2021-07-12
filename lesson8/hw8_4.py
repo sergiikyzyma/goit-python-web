@@ -23,26 +23,25 @@ def query_list_subjects():
     return """SELECT *
             FROM subject;"""
 
-###################
-def query_find_1():
-    result = jinja2.Template("""SELECT MAX(avg_mark), student, subject
+def query_find_1(id):
+    result = jinja2.Template("""SELECT student,MAX(avg_mark),subject
             FROM (SELECT AVG(punkts_by_subject) as avg_mark,student.last_name as student,subject.name_subject as subject
-                        FROM exam
-                        INNER JOIN student ON exam.id_student==student.id_student
-                        INNER JOIN subject ON exam.id_subject==subject.id_subject
-                        GROUP BY student.last_name); """)
-    return result.render()
+                    FROM exam
+                    INNER JOIN student ON exam.id_student==student.id_student
+                    INNER JOIN subject ON exam.id_subject==subject.id_subject
+                    WHERE subject.id_subject = {{id}}
+                    GROUP BY student.last_name); """)
+    return result.render(id=id)
 
 def query_find_2(name):
-    result = jinja2.Template("""SELECT MAX(avg_mark), student, subject
+    result = jinja2.Template("""SELECT student,MAX(avg_mark),subject
             FROM (SELECT AVG(punkts_by_subject) as avg_mark,student.last_name as student,subject.name_subject as subject
-                        FROM exam
-                        INNER JOIN student ON exam.id_student==student.id_student
-                        INNER JOIN subject ON exam.id_subject==subject.id_subject
-                        WHERE subject.name_subject = '{{name}}'
-                        GROUP BY student.last_name); """)
+                    FROM exam
+                    INNER JOIN student ON exam.id_student==student.id_student
+                    INNER JOIN subject ON exam.id_subject==subject.id_subject
+                    WHERE subject.name_subject = '{{name}}'
+                    GROUP BY student.last_name); """)
     return result.render(name=name)
-####################
 
 def query_find_3(name):
     result = jinja2.Template("""SELECT AVG(punkts_by_subject),name_group,subject.name_subject
@@ -108,13 +107,14 @@ def query_find_10():
             ORDER BY student.last_name; """)
     return result.render()
 
-def query_find_11():
+def query_find_11(id):
     result = jinja2.Template("""SELECT AVG(punkts_by_subject),student.last_name,teacher.last_name
             FROM exam
             INNER JOIN student ON exam.id_student==student.id_student
             INNER JOIN teacher ON exam.id_teacher==teacher.id_teacher
+            WHERE teacher.id_teacher = {{id}}
             GROUP BY student.last_name; """)
-    return result.render()
+    return result.render(id=id)
 
 def query_find_12():
     result = jinja2.Template("""SELECT AVG(punkts_by_subject),teacher.last_name
