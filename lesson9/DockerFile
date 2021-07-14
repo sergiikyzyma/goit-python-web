@@ -1,0 +1,10 @@
+FROM amd64/python
+
+ADD hw9_1.py /
+ADD hw9_2.py /
+ADD hw9_3.py /
+ADD hw9_4.py /
+
+RUN pip install jinja2
+
+CMD ["python3", "./hw9_1.py"]

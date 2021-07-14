@@ -1,0 +1,10 @@
+FROM amd64/python
+
+ADD hw8_1.py /
+ADD hw8_2.py /
+ADD hw8_3.py /
+ADD hw8_4.py /
+
+RUN pip install jinja2
+
+CMD ["python3", "./hw8_1.py"]
