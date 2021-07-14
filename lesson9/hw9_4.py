@@ -1,8 +1,12 @@
 import alembic
 import jinja2
 from sqlalchemy import *
+#from sqlalchemy.orm import sessionmaker
 
 def query_list_marks_all(engine, exams):
+    #sessionDB = sessionmaker(engine)
+    #session = sessionDB()
+    #session.query()
     ins = exams.SELECT("id_exam, name_group, student.last_name, subject.name_subject, teacher.last_name,teacher.grade,punkts_by_subject,timepunkts_by_subject").FROM("exam").INNER().JOIN("student").ON("exam.id_student==student.id_student").INNER().JOIN("subject").ON("exam.id_subject==subject.id_subject").INNER().JOIN("teacher").ON("exam.id_teacher==teacher.id_teacher")
     conn = engine.connect()
     print(conn.execute(ins))
