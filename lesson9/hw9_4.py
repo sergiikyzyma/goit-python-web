@@ -1,29 +1,26 @@
 import alembic
-import sqlalchemy
 import jinja2
+from sqlalchemy import *
 
-def query_list_marks_all():
-    return """SELECT id_exam, name_group,
-                    student.last_name,
-                    subject.name_subject,
-                    teacher.last_name,teacher.grade,
-                    punkts_by_subject,timepunkts_by_subject
-            FROM exam
-            INNER JOIN student ON exam.id_student==student.id_student
-            INNER JOIN subject ON exam.id_subject==subject.id_subject
-            INNER JOIN teacher ON exam.id_teacher==teacher.id_teacher;"""
+def query_list_marks_all(engine, exams):
+    ins = exams.SELECT("id_exam, name_group, student.last_name, subject.name_subject, teacher.last_name,teacher.grade,punkts_by_subject,timepunkts_by_subject").FROM("exam").INNER().JOIN("student").ON("exam.id_student==student.id_student").INNER().JOIN("subject").ON("exam.id_subject==subject.id_subject").INNER().JOIN("teacher").ON("exam.id_teacher==teacher.id_teacher")
+    conn = engine.connect()
+    print(conn.execute(ins))
 
-def query_list_students():
-    return """SELECT *
-            FROM student;"""
+def query_list_students(engine, students):
+    ins = students.SELECT("*").FROM("student")
+    conn = engine.connect()
+    print(conn.execute(ins))
 
-def query_list_teachers():
-    return """SELECT *
-            FROM teacher;"""
+def query_list_teachers(engine, teachers):
+    ins = teachers.SELECT("*").FROM("teacher")
+    conn = engine.connect()
+    print(conn.execute(ins))
 
-def query_list_subjects():
-    return """SELECT *
-            FROM subject;"""
+def query_list_subjects(engine, subjects):
+    ins = subjects.SELECT("*").FROM("subject")
+    conn = engine.connect()
+    print(conn.execute(ins))
 
 def query_find_1(id):
     result = jinja2.Template("""SELECT student,MAX(avg_mark),subject
