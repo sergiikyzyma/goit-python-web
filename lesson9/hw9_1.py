@@ -1,89 +1,81 @@
-import alembic
-import sqlite3
-from sqlalchemy import *
-from contextlib import contextmanager
+from alembic import migration
+from alembic.operations import ops
+from alembic import op
+from alembic import context, config
+from sqlalchemy.orm import sessionmaker
 from hw9_2 import *                 # creating tables
 from hw9_3 import *                 # filling tables
 from hw9_4 import *                 # searching in tables
-from sqlite3 import Error
 
-@contextmanager
-def create_connection(student_db):
-    try:
-        my_connection = sqlite3.connect(student_db)
-        print(sqlite3.version)
-        yield my_connection
-        my_connection.commit()
-    except Error as e:
-        my_connection.rollback()
-        print(e)
-    finally:
-        my_connection.close()
+def create_connection():
+    engine = create_engine("sqlite:///studentdb.db", echo=True)
+    session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    Base.metadata.create_all(engine)
+    return session
 
 def main():
-    engine = create_engine("sqlite:///studentdb.db", echo=True)
-    metadata = MetaData()
-    if engine is not None:
-        while True:
-            answer = input("What're You doing with database: ")
-            if answer == "create db":
-                students = create_table_student(metadata)
-                subjects = create_table_subject(metadata)
-                teachers = create_table_teacher(metadata)
-                exams = create_table_exam(metadata)
-                metadata.create_all(engine)
-            #elif answer == "fill db":
-                fill_table_student(engine, students)
-                fill_table_subject(engine, subjects)
-                fill_table_teacher(engine, teachers)
-                fill_table_exam(engine, exams)
-            #elif answer == "list marks all":
-            #    query_list_marks_all(engine, exams)
-            #elif answer == "list students":
-            #    query_list_students(engine, students)
-            #elif answer == "list teachers":
-            #    query_list_teachers(engine, teachers)
-            #elif answer == "list subjects":
-            #    query_list_subjects(engine, subjects)
-            elif answer == "query 1":
-                for id in range(1, 6):
-                    query_find_1(id)           # 5 студентов с наибольшим средним баллом по всем предметам
-            elif answer == "query 2":
-                answer1 = input("which is subject? ")
-                query_find_2(answer1)          # 1 студент с наивысшим средним баллом по одному предмету.
-            elif answer == "query 3":
-                answer1 = input("which is group? ")
-                query_find_3(answer1)          # средний балл в группе по одному предмету
-            elif answer == "query 4":
-                query_find_4()                 # Средний балл в потоке
-            elif answer == "query 5":
-                query_find_5()                 # Какие курсы читает преподаватель
-            elif answer == "query 6":
-                answer1 = input("which is group? ")
-                query_find_6(answer1)          # Список студентов в группе
-            elif answer == "query 7":
-                answer1 = input("which is group? ")
-                answer2 = input("which is subject? ")
-                query_find_7(answer1, answer2) # Оценки студентов в группе по предмету
-            elif answer == "query 8":
-                answer1 = input("which is group? ")
-                answer2 = input("which is subject? ")
-                query_find_8(answer1, answer2) # Оценки студентов в группе по предмету на последнем занятии
-            elif answer == "query 9":
-                query_find_9()                 # Список курсов, которые посещает студент
-            elif answer == "query 10":
-                query_find_10()                # Список курсов, которые студенту читает преподаватель
-            elif answer == "query 11":
-                for id in range(1, 4):
-                    query_find_11(id)          # Средний балл, который преподаватель ставит студенту
-            elif answer == "query 12":
-                query_find_12()                # Средний балл, который ставит преподаватель
-            elif answer == "exit":
-                break
-            else:
-                print("Error! You're maked the misstake by inputing")
-    else:
-        print(f"Error! The connection with database are not created!")
+    while True:
+        answer = input("What're You doing with database: ")
+        if answer == "create db" or answer == "fill db":
+            session = create_connection()
+            with session.begin() as session:
+                fill_table_student(session)
+                fill_table_subject(session)
+                fill_table_teacher(session)
+                fill_table_exam(session)
+                session.commit()
+        elif answer == "list marks all":
+            session = create_connection()
+            with session.begin() as session:
+                print(query_list_marks_all(session))
+        elif answer == "list students":
+            session = create_connection()
+            with session.begin() as session:
+                #q = session.query(Student).all()
+                print(query_list_students(session))
+        elif answer == "list teachers":
+            session = create_connection()
+            with session.begin() as session:
+                print(query_list_teachers(session))
+        elif answer == "list subjects":
+            session = create_connection()
+            with session.begin() as session:
+                print(query_list_subjects(session))
+        elif answer == "query 1":
+            for id in range(1, 6):
+                query_find_1(id)           # 5 студентов с наибольшим средним баллом по всем предметам
+        elif answer == "query 2":
+            answer1 = input("which is subject? ")
+            query_find_2(answer1)          # 1 студент с наивысшим средним баллом по одному предмету.
+        elif answer == "query 3":
+            answer1 = input("which is group? ")
+            query_find_3(answer1)          # средний балл в группе по одному предмету
+        elif answer == "query 4":
+            query_find_4()                 # Средний балл в потоке
+        elif answer == "query 5":
+            query_find_5()                 # Какие курсы читает преподаватель
+        elif answer == "query 6":
+            answer1 = input("which is group? ")
+            query_find_6(answer1)          # Список студентов в группе
+        elif answer == "query 7":
+            answer1 = input("which is group? ")
+            answer2 = input("which is subject? ")
+            query_find_7(answer1, answer2) # Оценки студентов в группе по предмету
+        elif answer == "query 8":
+            answer1 = input("which is group? ")
+            answer2 = input("which is subject? ")
+            query_find_8(answer1, answer2) # Оценки студентов в группе по предмету на последнем занятии
+        elif answer == "query 9":
+            query_find_9()                 # Список курсов, которые посещает студент
+        elif answer == "query 10":
+            query_find_10()                # Список курсов, которые студенту читает преподаватель
+        elif answer == "query 11":
+            for id in range(1, 4):
+                query_find_11(id)          # Средний балл, который преподаватель ставит студенту
+        elif answer == "query 12":
+            query_find_12()                # Средний балл, который ставит преподаватель
+        elif answer == "exit":
+            break
 
 if __name__ == "__main__":
     main()
